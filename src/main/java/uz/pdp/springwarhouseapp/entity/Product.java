@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Product extends AbsEntity {
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Category category;
 
     @OneToOne
@@ -25,6 +25,6 @@ public class Product extends AbsEntity {
 
     private String code;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Measurement measurement;
 }

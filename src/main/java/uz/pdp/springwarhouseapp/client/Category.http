@@ -1,0 +1,22 @@
+###
+POST http://localhost:8080/api/category
+Content-Type: application/json
+
+{
+  "name": "Telephone"
+}
+
+###
+PUT http://localhost:8080/api/category/id=2
+Content-Type: application/json
+
+{
+  "name": "Phone",
+  "categoryId": 1
+}
+
+###
+GET http://localhost:8080/api/category
+
+###
+GET http://localhost:8080/api/category/id=1

@@ -22,6 +22,12 @@ public class Attachment {
     @Column(nullable = false)
     private Long size;
 
-    @Column(name = "content_type", nullable = false)
+    @Column(nullable = false)
     private String contentType;
+
+    public Attachment(String name, Long size, String contentType) {
+        this.name = name;
+        this.size = size;
+        this.contentType = contentType;
+    }
 }

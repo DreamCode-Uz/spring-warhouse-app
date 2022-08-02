@@ -1,0 +1,27 @@
+###
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+  "name": "Iphone 12 PRO Max",
+  "categoryId": 2,
+  "photoId": 1,
+  "measurementId": 3
+}
+
+###
+PUT http://localhost:8080/api/product/id=7
+Content-Type: application/json
+
+{
+  "name": "Iphone 13",
+  "categoryId": 2,
+  "photoId": 2,
+  "measurementId": 3
+}
+
+###
+GET http://localhost:8080/api/product
+
+###
+GET http://localhost:8080/api/product/id=7
