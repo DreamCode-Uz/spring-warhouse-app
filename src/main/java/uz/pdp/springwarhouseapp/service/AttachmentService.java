@@ -1,8 +1,11 @@
 package uz.pdp.springwarhouseapp.service;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import uz.pdp.springwarhouseapp.entity.Attachment;
@@ -10,8 +13,12 @@ import uz.pdp.springwarhouseapp.entity.AttachmentContent;
 import uz.pdp.springwarhouseapp.repository.AttachmentContentRepository;
 import uz.pdp.springwarhouseapp.repository.AttachmentRepository;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -43,5 +50,38 @@ public class AttachmentService {
             }
         }
         return new ResponseEntity<>("The file does not exist.", NOT_FOUND);
+    }
+
+    public ResponseEntity<?> fileDownload(Integer fileId, HttpServletResponse response) {
+        Optional<Attachment> optionalAttachment = repository.findById(fileId);
+        if (optionalAttachment.isPresent()) {
+            Attachment attachment = optionalAttachment.get();
+            Optional<AttachmentContent> contentOptional = contentRepository.findByAttachmentId(attachment.getId());
+            if (contentOptional.isPresent()) {
+                response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + attachment.getName() + "\"");
+                response.setContentType(attachment.getContentType());
+                try {
+                    FileCopyUtils.copy(contentOptional.get().getBytes(), response.getOutputStream());
+                } catch (IOException e) {
+                    //  TODO: 403 or 424
+                    return new ResponseEntity<>(e.getMessage(), FAILED_DEPENDENCY);
+                }
+            } else {
+                return new ResponseEntity<>("Attachment content not found.", NOT_FOUND);
+            }
+        }
+        return new ResponseEntity<>(OK);
+    }
+
+    public ResponseEntity<List<Attachment>> getAllAttachment() {
+        return new ResponseEntity<>(repository.findAll(), OK);
+    }
+
+    public ResponseEntity<?> getOneAttachment(Integer fileId) {
+        Optional<Attachment> optionalAttachment = repository.findById(fileId);
+        if (optionalAttachment.isPresent()) {
+            return new ResponseEntity<>(optionalAttachment.get(), OK);
+        }
+        return new ResponseEntity<>("Attachment not found", NOT_FOUND);
     }
 }
