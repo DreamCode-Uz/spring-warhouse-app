@@ -43,7 +43,7 @@ public class AttachmentService {
             try {
                 AttachmentContent attachmentContent = new AttachmentContent(file.getBytes(), attachment);
                 AttachmentContent savedContent = contentRepository.save(attachmentContent);
-                return new ResponseEntity<>("File saved id="+savedContent.getId(), CREATED);
+                return new ResponseEntity<>("File saved id=" + savedContent.getId(), CREATED);
             } catch (IOException e) {
                 repository.delete(attachment);
                 return new ResponseEntity<>("Failed to convert file to byte.", EXPECTATION_FAILED);
@@ -81,6 +81,22 @@ public class AttachmentService {
         Optional<Attachment> optionalAttachment = repository.findById(fileId);
         if (optionalAttachment.isPresent()) {
             return new ResponseEntity<>(optionalAttachment.get(), OK);
+        }
+        return new ResponseEntity<>("Attachment not found", NOT_FOUND);
+    }
+
+    public ResponseEntity<?> deleteAttachment(Integer id) {
+        Optional<Attachment> optionalAttachment = repository.findById(id);
+        if (optionalAttachment.isPresent()) {
+            Optional<AttachmentContent> optionalContent = contentRepository.findByAttachmentId(optionalAttachment.get().getId());
+            try {
+                repository.delete(optionalAttachment.get());
+                optionalContent.ifPresent(contentRepository::delete);
+                return new ResponseEntity<>("Attachment successfully deleted", OK);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
         }
         return new ResponseEntity<>("Attachment not found", NOT_FOUND);
     }

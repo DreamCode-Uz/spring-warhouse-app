@@ -39,4 +39,9 @@ public class AttachmentController {
     public ResponseEntity<?> getOne(@PathVariable("attachmentId") Integer id) {
         return service.getOneAttachment(id);
     }
+
+    @DeleteMapping("/id={attachmentId}")
+    public ResponseEntity<?> delete(@PathVariable("attachmentId") Integer id) {
+        return service.deleteAttachment(id);
+    }
 }
