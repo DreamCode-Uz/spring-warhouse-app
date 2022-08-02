@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import uz.pdp.springwarhouseapp.payload.Result;
+import uz.pdp.springwarhouseapp.entity.Attachment;
 import uz.pdp.springwarhouseapp.service.AttachmentService;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/attachment")
@@ -24,8 +25,18 @@ public class AttachmentController {
         return service.fileUpload(request);
     }
 
-    @GetMapping("/download/fileId={fileId}")
-    public ResponseEntity<?> download(@PathVariable("fileId") Integer fileId, HttpServletResponse response) {
+    @GetMapping("/download/fileId={attachmentId}")
+    public ResponseEntity<?> download(@PathVariable("attachmentId") Integer fileId, HttpServletResponse response) {
         return service.fileDownload(fileId, response);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Attachment>> getAll() {
+        return service.getAllAttachment();
+    }
+
+    @GetMapping("/id={attachmentId}")
+    public ResponseEntity<?> getOne(@PathVariable("attachmentId") Integer id) {
+        return service.getOneAttachment(id);
     }
 }
