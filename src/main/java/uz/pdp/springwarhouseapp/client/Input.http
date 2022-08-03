@@ -4,16 +4,27 @@ Content-Type: application/json
 
 {
   "warehouseId": 1,
-  "supplierId": 1,
-  "currencyId": 1,
+  "supplierId": 2,
+  "currencyId": 2,
   "factureNumber": "823478"
+}
+
+###
+PUT http://localhost:8080/api/input/id=3
+Content-Type: application/json
+
+{
+  "warehouseId": 1,
+  "supplierId": 2,
+  "currencyId": 3,
+  "factureNumber": "$%^%^$%"
 }
 
 ###
 GET http://localhost:8080/api/input
 
 ###
-GET http://localhost:8080/api/input/id=1
+GET http://localhost:8080/api/input/id=2
 
 ###
-DELETE http://localhost:8080/api/input/id=1
+DELETE http://localhost:8080/api/input/id=2

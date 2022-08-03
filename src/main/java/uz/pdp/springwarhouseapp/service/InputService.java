@@ -2,7 +2,6 @@ package uz.pdp.springwarhouseapp.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.pdp.springwarhouseapp.entity.Currency;
@@ -59,7 +58,7 @@ public class InputService {
 
     public ResponseEntity<?> editInput(Integer id, InputDTO dto) {
         Optional<Input> optionalInput = repository.findById(id);
-        if (!optionalInput.isPresent()) return new ResponseEntity<>(NOT_FOUND);
+        if (!optionalInput.isPresent()) return new ResponseEntity<>("Input not found", NOT_FOUND);
         Input input = optionalInput.get();
         Optional<Warehouse> optionalWarehouse = warehouseRepository.findById(dto.getWarehouseId());
         optionalWarehouse.ifPresent(input::setWarehouse);
@@ -73,7 +72,7 @@ public class InputService {
 
     public ResponseEntity<?> deleteInput(Integer id) {
         Optional<Input> optionalInput = repository.findById(id);
-        if (!optionalInput.isPresent()) return new ResponseEntity<>(NOT_FOUND);
+        if (!optionalInput.isPresent()) return new ResponseEntity<>("Input not found",NOT_FOUND);
         try {
             repository.delete(optionalInput.get());
         } catch (Exception e) {
