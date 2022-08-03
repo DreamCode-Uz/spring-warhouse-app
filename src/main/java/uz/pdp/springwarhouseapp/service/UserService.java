@@ -42,15 +42,15 @@ public class UserService {
     public ResponseEntity<?> addUser(UserDTO dto) {
         if (repository.existsByPhoneNumber(dto.getPhoneNumber()))
             return new ResponseEntity<>("This phone is already registered.", ALREADY_REPORTED);
-        if (dto.getLastname() == null || dto.getFirstname() == null || dto.getPhoneNumber() == null || dto.getWarehouseId().size() == 0) {
+        if (dto.getLastname() == null || dto.getFirstname() == null || dto.getPhoneNumber() == null || dto.getWarehouseId() == null || dto.getWarehouseId().size() == 0) {
             return new ResponseEntity<>("The value is not fully entered.", PRECONDITION_FAILED);
         }
         Set<Warehouse> warehouses = warehouseCheck(dto.getWarehouseId());
         if (warehouses == null)
             return new ResponseEntity<>("A warehouse id that does not exist was entered.", NOT_FOUND);
-        if (warehouses.size() > 0) return new ResponseEntity<>("Warehouse not included.", PRECONDITION_FAILED);
+        if (warehouses.size() == 0) return new ResponseEntity<>("Warehouse not included.", PRECONDITION_FAILED);
         Optional<User> optional = repository.getMaxId();
-        String code = optional.map(value -> String.valueOf(value.getId() + 1)).orElse("0");
+        String code = optional.map(value -> String.valueOf(value.getId() + 1)).orElse("1");
         User user = new User(dto.getFirstname(), dto.getLastname(), dto.getPassword(), dto.getPhoneNumber(), code, warehouses);
 
         return new ResponseEntity<>(repository.save(user), OK);
@@ -61,7 +61,9 @@ public class UserService {
         if (!optionalUser.isPresent()) return new ResponseEntity<>("User not found.", NOT_FOUND);
         User user = optionalUser.get();
         user.setActive(dto.isActive());
-        if (!repository.existsByIdNotAndPhoneNumber(id, dto.getPhoneNumber()) && dto.getPhoneNumber() != null) user.setPhoneNumber(dto.getPhoneNumber());
+        if (dto.isActive()) user.setActive(dto.isActive());
+        if (!repository.existsByIdNotAndPhoneNumber(id, dto.getPhoneNumber()) && dto.getPhoneNumber() != null)
+            user.setPhoneNumber(dto.getPhoneNumber());
         if (dto.getFirstname() != null) user.setFirstname(dto.getFirstname());
         if (dto.getLastname() != null) user.setLastname(dto.getLastname());
         if (dto.getPassword() != null) user.setPassword(dto.getPassword());

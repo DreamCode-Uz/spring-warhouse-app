@@ -22,7 +22,7 @@ public class SupplierService {
     }
 
     public ResponseEntity<?> addNewSupplier(Supplier supplier) {
-        if (supplier.getPhoneNumber() != null && repository.existsByPhoneNumber(supplier.getPhoneNumber())) {
+        if (supplier.getPhoneNumber() != null && !repository.existsByPhoneNumber(supplier.getPhoneNumber())) {
             return new ResponseEntity<>(repository.save(supplier), CREATED);
         }
         return new ResponseEntity<>(BAD_REQUEST);
