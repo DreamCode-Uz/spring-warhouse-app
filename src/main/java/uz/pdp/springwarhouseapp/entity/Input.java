@@ -31,4 +31,13 @@ public class Input {
 
     @Column(nullable = false, unique = true)
     private String code;
+
+    public Input(Timestamp date, Warehouse warehouse, Supplier supplier, Currency currency, String factureNumber, String code) {
+        this.date = date;
+        this.warehouse = warehouse;
+        this.supplier = supplier;
+        this.currency = currency;
+        this.factureNumber = factureNumber;
+        this.code = code;
+    }
 }
