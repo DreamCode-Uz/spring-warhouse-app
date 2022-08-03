@@ -13,6 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     boolean existsByNameAndCategoryId(String name, Integer category_id);
 
-    @Query(value = "SELECT * FROM product where id=(SELECT max(id) FROM PRODUCT)", nativeQuery = true)
+    @Query(value = "SELECT * FROM product where id=(SELECT max(id) FROM product)", nativeQuery = true)
     Optional<Product> getMaxId();
 }
