@@ -3,8 +3,18 @@ POST http://localhost:8080/api/currency
 Content-Type: application/json
 
 {
-  "name": "currency 1"
+  "name": "dollar"
 }
+
+###
+PUT http://localhost:8080/api/currency/id=1
+Content-Type: application/json
+
+{
+  "name": "dollar",
+  "active": false
+}
+
 
 ###
 GET http://localhost:8080/api/currency

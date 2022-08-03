@@ -3,14 +3,22 @@ POST http://localhost:8080/api/warehouse
 Content-Type: application/json
 
 {
-  "name": "Warehouse name 1"
+  "name": "Warehouse name 3"
+}
+
+###
+PUT http://localhost:8080/api/warehouse/id=3
+Content-Type: application/json
+
+{
+  "name": "Warehouse name N"
 }
 
 ###
 GET http://localhost:8080/api/warehouse
 
 ###
-GET http://localhost:8080/api/warehouse/id=1
+GET http://localhost:8080/api/warehouse/id=3
 
 ###
-DELETE http://localhost:8080/api/warehouse/id=1
+DELETE http://localhost:8080/api/warehouse/id=3

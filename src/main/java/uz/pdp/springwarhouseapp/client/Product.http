@@ -3,7 +3,7 @@ POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-  "name": "Iphone 12 PRO Max",
+  "name": "Iphone 12",
   "categoryId": 2,
   "photoId": 1,
   "measurementId": 3

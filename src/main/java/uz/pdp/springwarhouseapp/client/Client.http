@@ -8,6 +8,15 @@ Content-Type: application/json
 }
 
 ###
+PUT http://localhost:8080/api/client/id=1
+Content-Type: application/json
+
+{
+  "name": "Client 1",
+  "phoneNumber": "998909998899"
+}
+
+###
 GET http://localhost:8080/api/client
 
 ###

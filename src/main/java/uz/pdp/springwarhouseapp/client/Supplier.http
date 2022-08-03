@@ -4,14 +4,24 @@ Content-Type: application/json
 
 {
   "name": "Supplier name 1",
-  "phoneNumber": "998912345678"
+  "phoneNumber": "998901234567"
+}
+
+###
+PUT http://localhost:8080/api/supplier/id=1
+Content-Type: application/json
+
+{
+  "name": "Supplier name 1",
+  "phoneNumber": "998912345678",
+  "active": false
 }
 
 ###
 GET http://localhost:8080/api/supplier
 
 ###
-GET http://localhost:8080/api/supplier/id=1
+GET http://localhost:8080/api/supplier/id=3
 
 ###
 DELETE http://localhost:8080/api/supplier/id=1
