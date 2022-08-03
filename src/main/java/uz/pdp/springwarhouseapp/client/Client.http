@@ -1,0 +1,17 @@
+###
+POST http://localhost:8080/api/client
+Content-Type: application/json
+
+{
+  "name": "Client 1",
+  "phoneNumber": "998901234567"
+}
+
+###
+GET http://localhost:8080/api/client
+
+###
+GET http://localhost:8080/api/client/id=1
+
+###
+DELETE http://localhost:8080/api/client/id=1

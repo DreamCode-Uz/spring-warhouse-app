@@ -1,0 +1,17 @@
+###
+POST http://localhost:8080/api/supplier
+Content-Type: application/json
+
+{
+  "name": "Supplier name 1",
+  "phoneNumber": "998912345678"
+}
+
+###
+GET http://localhost:8080/api/supplier
+
+###
+GET http://localhost:8080/api/supplier/id=1
+
+###
+DELETE http://localhost:8080/api/supplier/id=1

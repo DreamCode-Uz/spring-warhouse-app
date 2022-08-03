@@ -1,0 +1,16 @@
+###
+POST http://localhost:8080/api/warehouse
+Content-Type: application/json
+
+{
+  "name": "Warehouse name 1"
+}
+
+###
+GET http://localhost:8080/api/warehouse
+
+###
+GET http://localhost:8080/api/warehouse/id=1
+
+###
+DELETE http://localhost:8080/api/warehouse/id=1

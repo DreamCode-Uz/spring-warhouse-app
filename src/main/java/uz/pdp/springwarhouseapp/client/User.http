@@ -1,0 +1,19 @@
+###
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "phoneNumber": "123324237421",
+  "password": "PassWorD@123"
+}
+
+###
+GET http://localhost:8080/api/user
+
+###
+GET http://localhost:8080/api/user/id=1
+
+###
+DELETE http://localhost:8080/api/user/id=1

@@ -1,0 +1,19 @@
+###
+POST http://localhost:8080/api/input
+Content-Type: application/json
+
+{
+  "warehouseId": 1,
+  "supplierId": 1,
+  "currencyId": 1,
+  "factureNumber": "823478"
+}
+
+###
+GET http://localhost:8080/api/input
+
+###
+GET http://localhost:8080/api/input/id=1
+
+###
+DELETE http://localhost:8080/api/input/id=1
