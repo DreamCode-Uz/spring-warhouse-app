@@ -2,4 +2,4 @@
 GET http://localhost:8080/api/attachment
 
 ###
-DELETE http://localhost:8080/api/attachment/id=1
+DELETE http://localhost:8080/api/attachment/id=2
