@@ -1,0 +1,31 @@
+###
+POST http://localhost:8080/api/output
+Content-Type: application/json
+
+{
+  "warehouseId": 4,
+  "clientId": 2,
+  "currencyId": 3,
+  "factureNumber": "INV-77381"
+}
+
+###
+PUT http://localhost:8080/api/output/id=1
+Content-Type: application/json
+
+{
+  "warehouseId": 2,
+  "clientId": 2,
+  "currencyId": 3,
+  "factureNumber": "INV-8213"
+}
+
+
+###
+GET http://localhost:8080/api/output
+
+###
+GET http://localhost:8080/api/output/id=1
+
+###
+DELETE http://localhost:8080/api/output/id=1

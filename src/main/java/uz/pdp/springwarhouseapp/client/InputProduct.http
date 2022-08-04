@@ -1,0 +1,26 @@
+###
+POST http://localhost:8080/api/input/product
+Content-Type: application/json
+
+{
+  "productId": 8,
+  "amount": 100.25,
+  "expireDate": "2022-12-02",
+  "price": 3025,
+  "inputId": 3
+}
+
+###
+PUT http://localhost:8080/api/input/product/id=1
+Content-Type: application/json
+
+{
+  "productId": 8,
+  "amount": 100.25,
+  "expireDate": "2022-09-21",
+  "price": 3025,
+  "inputId": 3
+}
+
+###
+GET http://localhost:8080/api/input/product?page=1&size=20

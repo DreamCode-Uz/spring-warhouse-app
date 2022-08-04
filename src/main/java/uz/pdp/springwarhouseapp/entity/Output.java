@@ -31,4 +31,13 @@ public class Output {
 
     @Column(nullable = false, unique = true)
     private String code;
+
+    public Output(Timestamp date, Warehouse warehouse, Client client, Currency currency, String factureNumber, String code) {
+        this.date = date;
+        this.warehouse = warehouse;
+        this.client = client;
+        this.currency = currency;
+        this.factureNumber = factureNumber;
+        this.code = code;
+    }
 }
