@@ -16,7 +16,7 @@ public class InputProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Product product;
 
     @Column(nullable = false)
@@ -28,6 +28,14 @@ public class InputProduct {
     @Column
     private Date expireDate;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Input input;
+
+    public InputProduct(Product product, Double amount, Double price, Date expireDate, Input input) {
+        this.product = product;
+        this.amount = amount;
+        this.price = price;
+        this.expireDate = expireDate;
+        this.input = input;
+    }
 }
