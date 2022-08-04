@@ -89,14 +89,9 @@ public class AttachmentService {
         Optional<Attachment> optionalAttachment = repository.findById(id);
         if (optionalAttachment.isPresent()) {
             Optional<AttachmentContent> optionalContent = contentRepository.findByAttachmentId(optionalAttachment.get().getId());
-            try {
-                optionalContent.ifPresent(contentRepository::delete);
-                repository.delete(optionalAttachment.get());
-                return new ResponseEntity<>("Attachment successfully deleted", OK);
-            } catch (Exception e) {
-                return new ResponseEntity<>(e.getMessage(), BAD_REQUEST);
-            }
-
+            optionalContent.ifPresent(contentRepository::delete);
+            repository.delete(optionalAttachment.get());
+            return new ResponseEntity<>("Attachment successfully deleted", OK);
         }
         return new ResponseEntity<>("Attachment not found", NOT_FOUND);
     }
