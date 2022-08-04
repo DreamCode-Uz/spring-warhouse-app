@@ -90,11 +90,11 @@ public class AttachmentService {
         if (optionalAttachment.isPresent()) {
             Optional<AttachmentContent> optionalContent = contentRepository.findByAttachmentId(optionalAttachment.get().getId());
             try {
-                repository.delete(optionalAttachment.get());
                 optionalContent.ifPresent(contentRepository::delete);
+                repository.delete(optionalAttachment.get());
                 return new ResponseEntity<>("Attachment successfully deleted", OK);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                return new ResponseEntity<>(e.getMessage(), BAD_REQUEST);
             }
 
         }
