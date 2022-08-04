@@ -20,7 +20,7 @@ PUT http://localhost:8080/api/user/id=2
 Content-Type: application/json
 
 {
-  "firstname": "Mis Maria",
+  "firstname": "Miss Maria",
   "lastname": "Jones",
   "phoneNumber": "123324237411",
   "password": "PassWorD@123",

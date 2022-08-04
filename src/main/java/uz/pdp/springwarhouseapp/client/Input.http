@@ -6,25 +6,25 @@ Content-Type: application/json
   "warehouseId": 1,
   "supplierId": 2,
   "currencyId": 2,
-  "factureNumber": "823478"
+  "factureNumber": "INV-83478"
 }
 
 ###
-PUT http://localhost:8080/api/input/id=3
+PUT http://localhost:8080/api/input/id=1
 Content-Type: application/json
 
 {
   "warehouseId": 1,
   "supplierId": 2,
   "currencyId": 3,
-  "factureNumber": "$%^%^$%"
+  "factureNumber": "INV-00010"
 }
 
 ###
 GET http://localhost:8080/api/input
 
 ###
-GET http://localhost:8080/api/input/id=2
+GET http://localhost:8080/api/input/id=1
 
 ###
-DELETE http://localhost:8080/api/input/id=2
+DELETE http://localhost:8080/api/input/id=1

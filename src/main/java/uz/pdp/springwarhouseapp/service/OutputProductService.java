@@ -48,9 +48,9 @@ public class OutputProductService {
         if (!optionalProduct.isPresent()) return new ResponseEntity<>("Product not found.", NOT_FOUND);
         Optional<Output> optionalOutput = outputRepository.findById(dto.getOutputId());
         if (!optionalOutput.isPresent()) return new ResponseEntity<>("Output not found.", NOT_FOUND);
-        if (dto.getAmount() != null || dto.getAmount() == 0)
+        if (dto.getAmount() == null || dto.getAmount() == 0)
             return new ResponseEntity<>("Amount was not entered or the value remained 0", BAD_REQUEST);
-        if (dto.getPrice() != null || dto.getPrice() <= 0)
+        if (dto.getPrice() == null || dto.getPrice() <= 0)
             return new ResponseEntity<>("Price entered incorrectly.", BAD_REQUEST);
         OutputProduct op = new OutputProduct(optionalProduct.get(), dto.getAmount(), dto.getPrice(), optionalOutput.get());
         return new ResponseEntity<>(repository.save(op), CREATED);
@@ -76,7 +76,7 @@ public class OutputProductService {
         if (!optionalOutputProduct.isPresent()) return new ResponseEntity<>("Output product not found.", NOT_FOUND);
         try {
             repository.delete(optionalOutputProduct.get());
-            return new ResponseEntity<>("Output product not found.", OK);
+            return new ResponseEntity<>("Output product successfully deleted.", OK);
         } catch (Exception e) {
             return new ResponseEntity<>("BAD REQUEST", BAD_REQUEST);
         }

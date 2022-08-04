@@ -1,0 +1,30 @@
+###
+POST http://localhost:8080/api/output/product
+Content-Type: application/json
+
+{
+  "productId": 8,
+  "amount": 45.99,
+  "price": 340,
+  "outputId": 2
+}
+
+###
+PUT http://localhost:8080/api/output/product/id=1
+Content-Type: application/json
+
+{
+  "productId": 9,
+  "amount": 878.99,
+  "price": 99999,
+  "outputId": 2
+}
+
+###
+GET http://localhost:8080/api/output/product
+
+###
+GET http://localhost:8080/api/output/product/id=1
+
+###
+DELETE http://localhost:8080/api/output/product/id=1
